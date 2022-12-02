@@ -2,6 +2,7 @@
 
 args+=("$@")
 title=$1
-content=( "${args[@]/$title}" )
-echo $content
-echo ${content[@]} >> /home/ric/notes/$title.note
+
+unset args[0] >> /dev/null
+
+echo ${args[@]} >> /home/ric/notes/$title.note
