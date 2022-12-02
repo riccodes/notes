@@ -1,0 +1,38 @@
+#!/bin/bash
+
+while getopts ":chld:e:n:r:s:" option; do
+   case $option in
+      c)
+         ./notes-collect
+         exit;;
+      d) 
+         del+=("$OPTARG")
+         ./notes-delete ${del[@]}
+         exit;;
+      e) 
+         edit+=("$OPTARG")
+         ./notes-edit ${edit[@]}
+         exit;;
+      h) 
+         ./notes-help
+         exit;;
+      l) 
+         ./notes-list
+         exit;;
+      n)
+         args+=("$OPTARG")
+         ./nn ${args[@]}
+         exit;;
+      r) 
+         read+=("$OPTARG")
+         ./notes-read ${read[@]}
+         exit;;
+       s) 
+         query+=("$OPTARG")
+         ./notes-search ${query[@]}
+         exit;;
+     \?) 
+         echo "Error: Invalid option"
+         exit;;
+   esac
+done

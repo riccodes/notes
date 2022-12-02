@@ -1,0 +1,18 @@
+#!/usr/bin/zsh
+
+echo "searching for notes..."
+
+notes=$(find /home/ric/ -name '*.note' -not -path "/home/ric/notes/*" )
+lines=$(echo "$notes" | wc -l)
+chars=$(echo -n "$notes" | wc -c)
+
+if (( chars > 0 )); then
+  echo "Found $lines notes:\n$notes"
+  echo "moving notes..."
+
+  while IFS= read -r line; do
+      mv "$line" ~/notes/
+  done <<< "$notes"
+else
+  echo "No new notes found"
+fi

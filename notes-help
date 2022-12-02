@@ -1,0 +1,10 @@
+#!/bin/bash
+printf "Note management commands:\n\n"
+echo "-n [title] [content]   creates a new note"
+echo "-l                     lists all notes"
+echo "-c                     collects all .note files to /home/ric/notes"
+echo "-d [title]             deletes a note"
+echo "-e [title]             edits a note"
+echo "-h                     shows this help menu"
+echo "-r [title]             prints a note to the terminal"
+echo "-s [filter]            search for notes that match *.note based on filter"
