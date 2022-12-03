@@ -5,15 +5,14 @@ while getopts ":chlx:e:m:n:r:s:" option; do
       c)
          ./notes-collect
          exit;;
-      e) 
-         edit+=("$OPTARG")
-         nano /home/ric/notes/"${edit[0]}".note
+      e)
+         nano /home/ric/notes/"$2".note
          exit;;
       h) 
          ./notes-help
          exit;;
       l) 
-         ls /home/ric/notes
+         ls -l /home/ric/notes
          exit;;
       n)
          ./nn "$2" "$3"
@@ -21,17 +20,14 @@ while getopts ":chlx:e:m:n:r:s:" option; do
       m)
          mv /home/ric/notes/"$2".note /home/ric/notes/"$3".note
          exit;;
-      r) 
-         read+=("$OPTARG")
-         cat /home/ric/notes/"${read[0]}".note
+      r)
+         cat /home/ric/notes/"$2".note
          exit;;
-       s) 
-         query+=("$OPTARG")
-         find /home/ric/notes -name "*${query[0]}*.note" -printf "%f\n"
+       s)
+         find /home/ric/notes -name "*$2*.note" -printf "%f\n"
          exit;;
        x)
-         del+=("$OPTARG")
-         rm /home/ric/notes/"${del[0]}".note
+         rm /home/ric/notes/"$2".note
          exit;;
      \?) 
          ./notes-help
@@ -39,4 +35,4 @@ while getopts ":chlx:e:m:n:r:s:" option; do
    esac
 done
 
-if [ $OPTIND -eq 1 ]; then ./notes-help; fi
+if [ $OPTIND -eq 1 ]; then ls /home/ric/notes; fi
