@@ -5,7 +5,7 @@ separate () {
   return
   }
 
-while getopts ":chlx:e:m:n:r:s:" option; do
+while getopts ":chlx:e:f:m:n:r:s:" option; do
    case $option in
       c)
          ./notes-collect
@@ -13,6 +13,9 @@ while getopts ":chlx:e:m:n:r:s:" option; do
       e)
          code /home/ric/notes/"$2".note
          exit;;
+      f)
+        find /home/ric/notes -type f -print0 | xargs -0 grep "$2"
+        exit ;;
       h) 
          ./notes-help
          exit;;
