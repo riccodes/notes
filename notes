@@ -16,8 +16,7 @@ while getopts ":chlx:e:m:n:r:s:" option; do
          ls /home/ric/notes
          exit;;
       n)
-         args+=("$OPTARG")
-         ./nn ${args[@]}
+         ./nn "$2" "$3"
          exit;;
       m)
          mv /home/ric/notes/"$2".note /home/ric/notes/"$3".note
