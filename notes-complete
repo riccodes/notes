@@ -1,0 +1,8 @@
+#!/bin/bash
+
+notes=( ~/notes/* ) # find all notes in directory
+notes=( "${notes[@]##*/}" ) # remove /home/ric/notes
+notes=( "${notes[@]%.note}" ) # remove .note
+note_list=$( IFS=$' '; echo "${notes[*]}" ) # convert to string
+
+complete -W "$note_list" notes # add note list to complete
