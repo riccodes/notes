@@ -1,13 +1,9 @@
 #!/bin/bash
 
-while getopts ":chld:e:n:r:s:" option; do
+while getopts ":chlx:e:m:n:r:s:" option; do
    case $option in
       c)
          ./notes-collect
-         exit;;
-      d) 
-         del+=("$OPTARG")
-         rm /home/ric/notes/"${del[0]}".note
          exit;;
       e) 
          edit+=("$OPTARG")
@@ -23,6 +19,9 @@ while getopts ":chld:e:n:r:s:" option; do
          args+=("$OPTARG")
          ./nn ${args[@]}
          exit;;
+      m)
+         mv /home/ric/notes/"$2".note /home/ric/notes/"$3".note
+         exit;;
       r) 
          read+=("$OPTARG")
          cat /home/ric/notes/"${read[0]}".note
@@ -31,8 +30,12 @@ while getopts ":chld:e:n:r:s:" option; do
          query+=("$OPTARG")
          find /home/ric/notes -name "*${query[0]}*.note" -printf "%f\n"
          exit;;
+       x)
+         del+=("$OPTARG")
+         rm /home/ric/notes/"${del[0]}".note
+         exit;;
      \?) 
-         echo "Error: Invalid option"
+         ./notes-help
          exit;;
    esac
 done
