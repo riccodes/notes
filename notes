@@ -1,52 +1,63 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
-separate () {
-  printf %"$COLUMNS"s |tr " " "-"
-  return
-  }
+source helpers.sh
 
 while getopts ":chlx:e:f:m:n:p:s:" option; do
-   case $option in
-      c)
-         ./notes-collect
-         exit;;
-      e)
-         code /home/ric/notes/"$2".note
-         exit;;
-      f)
-        find /home/ric/notes -type f -print0 | xargs -0 grep "$2"
-        exit ;;
-      h) 
-         ./notes-help
-         exit;;
-      l) 
-         ls -l /home/ric/notes
-         exit;;
-      n)
-        echo -e "$3" >> /home/ric/notes/"$2".note
-        separate #todo why do I have to have 2 separates?
-        separate
-        cat /home/ric/notes/"$2".note
-        separate
-        exit;;
-      m)
-         mv /home/ric/notes/"$2".note /home/ric/notes/"$3".note
-         exit;;
-      p)
-        separate; separate;
-        cat /home/ric/notes/"$2".note
-        separate
-        exit;;
-       s)
-         find /home/ric/notes -name "*$2*.note" -printf "%f\n"
-         exit;;
-       x)
-         rm /home/ric/notes/"$2".note
-         exit;;
-     \?) 
-         ./notes-help
-         exit;;
-   esac
+  case $option in
+  c)
+    collect
+    update_refs
+    exit
+    ;;
+  e)
+    code /home/ric/notes/"$2".note
+    exit
+    ;;
+  f)
+    find /home/ric/notes -type f -print0 | xargs -0 grep "$2"
+    exit
+    ;;
+  h)
+    help_menu
+    exit
+    ;;
+  l)
+    ls -l /home/ric/notes
+    exit
+    ;;
+  n)
+    print_separator
+    echo -e "$3" >>/home/ric/notes/"$2".note
+    cat /home/ric/notes/"$2".note
+    print_separator
+    update_refs
+    exit
+    ;;
+  m)
+    mv /home/ric/notes/"$2".note /home/ric/notes/"$3".note
+    update_refs
+    exit
+    ;;
+  p)
+    print_separator
+    cat /home/ric/notes/"$2".note
+    print_separator
+    exit
+    ;;
+  s)
+    find /home/ric/notes -name "*$2*.note" -printf "%f\n"
+    exit
+    ;;
+  x)
+    rm /home/ric/notes/"$2".note
+    update_refs
+    exit
+    ;;
+  \?)
+    help_menu
+    exit
+    ;;
+  esac
 done
 
 if [ $OPTIND -eq 1 ]; then ls /home/ric/notes; fi
