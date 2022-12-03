@@ -7,17 +7,17 @@ while getopts ":chld:e:n:r:s:" option; do
          exit;;
       d) 
          del+=("$OPTARG")
-         ./notes-delete ${del[@]}
+         rm /home/ric/notes/"${del[0]}".note
          exit;;
       e) 
          edit+=("$OPTARG")
-         ./notes-edit ${edit[@]}
+         nano /home/ric/notes/"${edit[0]}".note
          exit;;
       h) 
          ./notes-help
          exit;;
       l) 
-         ./notes-list
+         ls /home/ric/notes
          exit;;
       n)
          args+=("$OPTARG")
@@ -25,11 +25,11 @@ while getopts ":chld:e:n:r:s:" option; do
          exit;;
       r) 
          read+=("$OPTARG")
-         ./notes-read ${read[@]}
+         cat /home/ric/notes/"${read[0]}".note
          exit;;
        s) 
          query+=("$OPTARG")
-         ./notes-search ${query[@]}
+         find /home/ric/notes -name "*${query[0]}*.note" -printf "%f\n"
          exit;;
      \?) 
          echo "Error: Invalid option"

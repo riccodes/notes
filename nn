@@ -5,4 +5,4 @@ title=$1
 
 unset args[0] >> /dev/null
 
-echo ${args[@]} >> /home/ric/notes/$title.note
+echo "${args[@]}" >> /home/ric/notes/"$title".note
