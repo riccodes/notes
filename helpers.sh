@@ -40,6 +40,5 @@ function collect() {
 }
 
 function update_refs() {
-#  source /home/ric/.oh-my-zsh/custom/source_on_load.zsh
   exec zsh
 }

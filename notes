@@ -26,8 +26,8 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
     exit
     ;;
   n)
-    print_separator
     echo -e "$3" >>/home/ric/notes/"$2".note
+    print_separator
     cat /home/ric/notes/"$2".note
     print_separator
     update_refs
