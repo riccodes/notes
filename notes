@@ -1,12 +1,17 @@
 #!/bin/bash
 
+separate () {
+  printf %"$COLUMNS"s |tr " " "-"
+  return
+  }
+
 while getopts ":chlx:e:m:n:r:s:" option; do
    case $option in
       c)
          ./notes-collect
          exit;;
       e)
-         nano /home/ric/notes/"$2".note
+         code /home/ric/notes/"$2".note
          exit;;
       h) 
          ./notes-help
@@ -15,14 +20,20 @@ while getopts ":chlx:e:m:n:r:s:" option; do
          ls -l /home/ric/notes
          exit;;
       n)
-         ./nn "$2" "$3"
-         exit;;
+        echo -e "$3" >> /home/ric/notes/"$2".note
+        separate #todo why do I have to have 2 separates?
+        separate
+        cat /home/ric/notes/"$2".note
+        separate
+        exit;;
       m)
          mv /home/ric/notes/"$2".note /home/ric/notes/"$3".note
          exit;;
       r)
-         cat /home/ric/notes/"$2".note
-         exit;;
+        separate; separate;
+        cat /home/ric/notes/"$2".note
+        separate
+        exit;;
        s)
          find /home/ric/notes -name "*$2*.note" -printf "%f\n"
          exit;;
