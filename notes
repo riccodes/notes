@@ -5,7 +5,7 @@ separate () {
   return
   }
 
-while getopts ":chlx:e:f:m:n:r:s:" option; do
+while getopts ":chlx:e:f:m:n:p:s:" option; do
    case $option in
       c)
          ./notes-collect
@@ -32,7 +32,7 @@ while getopts ":chlx:e:f:m:n:r:s:" option; do
       m)
          mv /home/ric/notes/"$2".note /home/ric/notes/"$3".note
          exit;;
-      r)
+      p)
         separate; separate;
         cat /home/ric/notes/"$2".note
         separate
