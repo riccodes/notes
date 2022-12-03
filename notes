@@ -38,3 +38,5 @@ while getopts ":chlx:e:m:n:r:s:" option; do
          exit;;
    esac
 done
+
+if [ $OPTIND -eq 1 ]; then ./notes-help; fi
