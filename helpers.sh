@@ -1,7 +1,7 @@
 function help_menu() {
   printf "Note management commands:\n\n"
 
-  echo "-c                    collects all .note files to /home/ric/notes"
+  echo "-c                    collects all .note files to /home/ric/notes-repo"
   echo "-e [name]             edits a note"
   echo "-e [query]            finds notes containing [query]"
   echo "-h                    shows this help menu"
@@ -19,7 +19,7 @@ function print_separator() {
 
 function collect() {
 
-  notes=$(find /home/ric/ -name '*.note' -not -path "/home/ric/notes/*")
+  notes=$(find /home/ric/ -name '*.note' -not -path "/home/ric/notes-repo/*")
   lines=$(echo "$notes" | wc -l)    # counts number of lines
   chars=$(echo -n "$notes" | wc -c) # counts number of chars
 
@@ -29,10 +29,10 @@ function collect() {
   if ((chars > 0)); then
     printf "Found $lines note(s):%s\n$notes%s\n"
     echo
-    echo "moving notes to /home/ric/notes"
+    echo "moving notes to /home/ric/notes-repo"
 
     while IFS= read -r line; do
-      mv "$line" ~/notes/
+      mv "$line" ~/notes-repo/
     done <<<"$notes"
   else
     echo "No new notes found"

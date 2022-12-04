@@ -10,11 +10,11 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
     exit
     ;;
   e)
-    code /home/ric/notes/"$2".note
+    code /home/ric/notes-repo/"$2".note
     exit
     ;;
   f)
-    find /home/ric/notes -type f -print0 | xargs -0 grep "$2"
+    find /home/ric/notes-repo -type f -print0 | xargs -0 grep "$2"
     exit
     ;;
   h)
@@ -22,34 +22,34 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
     exit
     ;;
   l)
-    ls -l /home/ric/notes
+    ls -l /home/ric/notes-repo
     exit
     ;;
   n)
-    echo -e "$3" >>/home/ric/notes/"$2".note
+    echo -e "$3" >>/home/ric/notes-repo/"$2".note
     print_separator
-    cat /home/ric/notes/"$2".note
+    cat /home/ric/notes-repo/"$2".note
     print_separator
     update_refs
     exit
     ;;
   m)
-    mv /home/ric/notes/"$2".note /home/ric/notes/"$3".note
+    mv /home/ric/notes-repo/"$2".note /home/ric/notes-repo/"$3".note
     update_refs
     exit
     ;;
   p)
     print_separator
-    cat /home/ric/notes/"$2".note
+    cat /home/ric/notes-repo/"$2".note
     print_separator
     exit
     ;;
   s)
-    find /home/ric/notes -name "*$2*.note" -printf "%f\n"
+    find /home/ric/notes-repo -name "*$2*.note" -printf "%f\n"
     exit
     ;;
   x)
-    rm /home/ric/notes/"$2".note
+    rm /home/ric/notes-repo/"$2".note
     update_refs
     exit
     ;;
@@ -60,4 +60,4 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
   esac
 done
 
-if [ $OPTIND -eq 1 ]; then ls /home/ric/notes; fi
+if [ $OPTIND -eq 1 ]; then ls /home/ric/notes-repo; fi

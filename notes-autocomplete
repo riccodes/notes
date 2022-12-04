@@ -1,7 +1,7 @@
 #!/bin/bash
 
-notes=( ~/notes/* ) # find all notes in directory
-notes=( "${notes[@]##*/}" ) # remove /home/ric/notes
+notes=( ~/notes-repo/* ) # find all notes in directory
+notes=( "${notes[@]##*/}" ) # remove /home/ric/notes-repo
 notes=( "${notes[@]%.note}" ) # remove .note
 note_list=$( IFS=$' '; echo "${notes[*]}" ) # convert to string
 
