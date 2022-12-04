@@ -46,6 +46,9 @@ function commit(){
 }
 
 function sync() {
+    echo ">>> checking for server changes..."
+    git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ pull
+    
     echo ">>> committing all files..."
     commit
 
