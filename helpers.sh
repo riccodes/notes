@@ -14,6 +14,7 @@ function help_menu() {
 }
 
 function print_separator() {
+  echo "$1"
   printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 }
 
@@ -37,6 +38,22 @@ function collect() {
   else
     echo "No new notes found"
   fi
+}
+
+function commit(){
+#  git --git-dir /home/ric/notes-repo/.git status
+  git --git-dir /home/ric/notes-repo/.git add . >> /dev/null
+  git --git-dir /home/ric/notes-repo/.git commit -m "$(date +%y-%m-%d_%T)"
+}
+
+function sync() {
+    echo "committing all files..."
+    commit
+
+    echo "merging with server..."
+    git --git-dir /home/ric/notes-repo/.git push
+
+    echo "done!"
 }
 
 function update_refs() {
