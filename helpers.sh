@@ -41,16 +41,15 @@ function collect() {
 }
 
 function commit(){
-#  git --git-dir /home/ric/notes-repo/.git status
   git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ add . >> /dev/null
   git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ commit -m "$(date +%y-%m-%d_%T)"
 }
 
 function sync() {
-    echo "committing all files..."
+    echo ">>> committing all files..."
     commit
 
-    echo "merging with server..."
+    echo ">>> merging with server..."
     git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ push
 
     echo "done!"
