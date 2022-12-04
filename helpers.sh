@@ -60,6 +60,10 @@ function sync() {
     echo "done!"
 }
 
+function status() {
+     git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ status
+}
+
 function update_refs() {
   exec zsh
 }

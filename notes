@@ -71,8 +71,15 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
   esac
 done
 
-if [ $OPTIND -eq 1 ] && [[ "$1" == "save" ]]; then
-  sync
+if [ $OPTIND -eq 1 ]; then
+  case "$1" in
+    "save")
+      sync
+      ;;
+    "status")
+      status
+      ;;
+  esac
 else
   ls /home/ric/notes-repo;
 fi
