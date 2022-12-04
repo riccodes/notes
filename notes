@@ -6,12 +6,12 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
   case $option in
   c)
     collect
+    commit
     update_refs
     exit
     ;;
   e)
     code /home/ric/notes-repo/"$2".note
-#    commit
     exit
     ;;
   f)

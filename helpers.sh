@@ -1,16 +1,18 @@
 function help_menu() {
   printf "Note management commands:\n\n"
 
-  echo "-c                    collects all .note files to /home/ric/notes-repo"
+  echo "-c                    collects all .note files to /home/ric/notes-repo. commits"
   echo "-e [name]             edits a note"
   echo "-e [query]            finds notes containing [query]"
   echo "-h                    shows this help menu"
   echo "-l                    lists all notes"
-  echo "-m [current] [new]    renames [current] to [new]"
-  echo "-n [name] [content]   creates a new note"
+  echo "-m [current] [new]    renames [current] to [new]. commits"
+  echo "-n [name] [content]   creates a new note. commits"
   echo "-p [name]             prints a note to the terminal"
   echo "-s [filter]           search for notes that match *[filter]*.note"
-  echo "-x [name]             deletes a note"
+  echo "-x [name]             deletes a note. commits"
+  echo
+  echo "save                  sync with git server. commits"
 }
 
 function print_separator() {
@@ -48,7 +50,7 @@ function commit(){
 function sync() {
     echo ">>> checking for server changes..."
     git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ pull
-    
+
     echo ">>> committing all files..."
     commit
 
