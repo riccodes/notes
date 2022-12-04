@@ -15,7 +15,7 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
     exit
     ;;
   f)
-    find /home/ric/notes-repo -type f -print0 | xargs -0 grep "$2"
+    find /home/ric/notes-repo -type f -print0 | xargs -0 grep -i "$2"
     exit
     ;;
   h)
