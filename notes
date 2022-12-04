@@ -33,14 +33,14 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
     cat /home/ric/notes-repo/"$2".note
     print_separator
 
-#    commit
+    commit
     update_refs
 
     exit
     ;;
   m)
     mv /home/ric/notes-repo/"$2".note /home/ric/notes-repo/"$3".note
-#    commit
+    commit
     update_refs
 
     exit
@@ -59,7 +59,7 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
     ;;
   x)
     rm /home/ric/notes-repo/"$2".note
-#    commit
+    commit
     update_refs
 
     exit
@@ -72,8 +72,7 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
 done
 
 if [ $OPTIND -eq 1 ] && [[ "$1" == "save" ]]; then
-#  sync
-  echo "this will sync to repo"
+  sync
 else
   ls /home/ric/notes-repo;
 fi
