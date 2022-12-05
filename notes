@@ -22,7 +22,7 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
     exit ;;
 
   l)
-    ls -l /home/ric/notes-repo
+    ls -goh /home/ric/notes-repo
     exit ;;
 
   n)
