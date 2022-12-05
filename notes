@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 source helpers.sh
 
-while getopts ":chlx:e:f:m:n:p:s:" option; do
+while getopts ":chlx:e:f:m:n:v:s:" option; do
   case $option in
   c)
     collect
@@ -35,7 +35,7 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
     update_refs
     exit ;;
 
-  p)
+  v)
     print_separator "$2"
     cat /home/ric/notes-repo/"$2".note
     print_separator

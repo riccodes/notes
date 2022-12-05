@@ -9,8 +9,8 @@ function help_menu() {
   echo "-l                      lists all notes"
   echo "-m [current] [new]      renames [current] to [new]. commits"
   echo "-n [name] [\"content\"]   creates/updates a note. commits"
-  echo "-p [name]               prints a note to the terminal"
   echo "-s [filter]             search for notes that match *[filter]*.note"
+  echo "-v [name]               prints a note to the terminal"
   echo "-x [name]               deletes a note. commits"
   echo
   echo "Arguments:"
