@@ -10,7 +10,7 @@ while getopts ":chlx:e:f:m:n:v:s:" option; do
     exit ;;
 
   e)
-    code /home/ric/notes-repo/"$2".note
+    gedit /home/ric/notes-repo/"$2".note
     exit ;;
 
   f)
