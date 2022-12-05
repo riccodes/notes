@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-
 source helpers.sh
 
 while getopts ":chlx:e:f:m:n:p:s:" option; do
@@ -8,78 +7,69 @@ while getopts ":chlx:e:f:m:n:p:s:" option; do
     collect
     commit
     update_refs
-    exit
-    ;;
+    exit ;;
+
   e)
     code /home/ric/notes-repo/"$2".note
-    exit
-    ;;
+    exit ;;
+
   f)
     find /home/ric/notes-repo -type f -print0 | xargs -0 grep -i "$2"
-    exit
-    ;;
+    exit ;;
+
   h)
     help_menu
-    exit
-    ;;
+    exit ;;
+
   l)
     ls -l /home/ric/notes-repo
-    exit
-    ;;
+    exit ;;
+
   n)
-    echo -e "$3" >>/home/ric/notes-repo/"$2".note
+    new "$2" "$3"
+    exit ;;
 
-    print_separator "$2"
-    cat /home/ric/notes-repo/"$2".note
-    print_separator
-
-    commit
-    update_refs
-
-    exit
-    ;;
   m)
     mv /home/ric/notes-repo/"$2".note /home/ric/notes-repo/"$3".note
     commit
     update_refs
+    exit ;;
 
-    exit
-    ;;
   p)
     print_separator "$2"
     cat /home/ric/notes-repo/"$2".note
     print_separator
+    exit ;;
 
-    exit
-    ;;
   s)
     find /home/ric/notes-repo -name "*$2*.note" -printf "%f\n"
+    exit ;;
 
-    exit
-    ;;
   x)
     rm /home/ric/notes-repo/"$2".note
     commit
     update_refs
+    exit ;;
 
-    exit
-    ;;
   \?)
     help_menu
-    exit
-    ;;
+    exit ;;
   esac
 done
 
-if [ $OPTIND -eq 1 ]; then
+if [ $OPTIND -eq 1 ]
+ then
   case "$1" in
     "save")
       sync
-      ;;
+      exit ;;
+
     "status")
       status
-      ;;
+      exit ;;
+
+    *)
+      ls /home/ric/notes-repo;
+      exit ;;
   esac
-else
-  ls /home/ric/notes-repo;
 fi
