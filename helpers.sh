@@ -14,7 +14,7 @@ function help_menu() {
   echo "-x [name]               deletes a note. commits"
   echo
   echo "Arguments:"
-  echo "save                    sync with git server. commits"
+  echo "sync                    sync with git server. commits"
   echo "status                  show git repo status"
 }
 

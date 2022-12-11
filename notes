@@ -60,7 +60,7 @@ done
 if [ $OPTIND -eq 1 ]
  then
   case "$1" in
-    "save")
+    "sync")
       sync
       exit ;;
 
