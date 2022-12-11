@@ -3,11 +3,11 @@ function help_menu() {
   echo
   echo "Options:"
   echo "-c                      collects all .note files to /home/ric/notes-repo. commits"
-  echo "-d [line-number]        edits a note"
+  echo "-d [line-number] [name] edits a note"
   echo "-e [name]               edits a note"
   echo "-f [query]              finds notes containing [query]"
   echo "-h                      shows this help menu"
-  echo "-l                      lists all notes"
+  echo "-l                      lists all notes in long format"
   echo "-m [current] [new]      renames [current] to [new]. commits"
   echo "-n [name] [\"content\"]   creates/updates a note. commits"
   echo "-s [filter]             search for notes that match *[filter]*.note"
@@ -17,6 +17,7 @@ function help_menu() {
   echo "Arguments:"
   echo "sync                    sync with git server. commits"
   echo "status                  show git repo status"
+  echo "No args                 short list all notes"
 }
 
 function print_separator() {
