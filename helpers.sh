@@ -3,6 +3,7 @@ function help_menu() {
   echo
   echo "Options:"
   echo "-c                      collects all .note files to /home/ric/notes-repo. commits"
+  echo "-d [line-number]        edits a note"
   echo "-e [name]               edits a note"
   echo "-f [query]              finds notes containing [query]"
   echo "-h                      shows this help menu"
@@ -23,7 +24,13 @@ function print_separator() {
   printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 }
 
-function collect() {
+function view(){
+	  print_separator "$1"
+    cat /home/ric/notes-repo/"$1".note
+    print_separator
+}
+
+function collect() {q
   notes=$(find /home/ric/ -name '*.note' -not -path "/home/ric/notes-repo/*")
   lines=$(echo "$notes" | wc -l)    # counts number of lines
   chars=$(echo -n "$notes" | wc -c) # counts number of chars
@@ -72,11 +79,7 @@ function update_refs() {
 
 function new() {
     echo -e "$2" >> /home/ric/notes-repo/"$1".note
-
-    print_separator "$1"
-    cat /home/ric/notes-repo/"$1".note
-    print_separator
-
+    view $1
     commit
     update_refs
 }

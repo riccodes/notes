@@ -1,12 +1,18 @@
 #!/usr/bin/env zsh
 source helpers.sh
 
-while getopts ":chlx:e:f:m:n:v:s:" option; do
+while getopts ":chlx:d:e:f:m:n:v:s:" option; do
   case $option in
   c)
     collect
     commit
     update_refs
+    exit ;;
+    
+  d)
+    sed -i "$2d" /home/ric/notes-repo/"$3".note
+    view $3
+    commit
     exit ;;
 
   e)
@@ -36,9 +42,7 @@ while getopts ":chlx:e:f:m:n:v:s:" option; do
     exit ;;
 
   v)
-    print_separator "$2"
-    cat /home/ric/notes-repo/"$2".note
-    print_separator
+    view $2
     exit ;;
 
   s)
