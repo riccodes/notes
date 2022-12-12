@@ -42,7 +42,7 @@ while getopts ":chlx:d:e:f:m:n:v:s:" option; do
     exit ;;
 
   v)
-    view $2
+    view $2 $1
     exit ;;
 
   s)
