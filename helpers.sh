@@ -17,6 +17,7 @@ function help_menu() {
   echo "-x, delete [name]               			deletes a note. commits"
   echo
   echo "Arguments:"
+  echo "copy [name] [new name]                  		copies a note. appends -copy if no [new name] is passed"
   echo "sync                    				sync with git server. commits. pulls. pushes"
   echo "status                  				show git repo status. fetches"
   echo "No args                 				short list all notes"
