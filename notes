@@ -64,6 +64,10 @@ done
 if [ $OPTIND -eq 1 ]
  then
   case "$1" in
+  	"copy")
+      copy $2 $3
+      exit ;;
+
     "sync")
       sync
       exit ;;

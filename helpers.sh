@@ -37,8 +37,22 @@ function view(){
     print_separator
 }
 
+function new() {
+    echo -e "$2" >> "$repo""$1".note
+    view $1
+    commit
+    update_refs
+}
+
 function copy(){
-	cp /home/ric/notes
+	if [ -z $2 ]; then
+		cp "$repo""$1".note "$repo""$1"-copy.note 
+	else
+		cp "$repo""$1".note "$repo""$2".note 
+	fi
+	
+	commit
+	update_refs
 }
 
 function collect() {
@@ -89,11 +103,4 @@ function status() {
 
 function update_refs() {
   exec zsh
-}
-
-function new() {
-    echo -e "$2" >> "$repo""$1".note
-    view $1
-    commit
-    update_refs
 }
