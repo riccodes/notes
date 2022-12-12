@@ -21,8 +21,12 @@ function help_menu() {
 }
 
 function print_separator() {
-  echo "$1"
-  printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+	if [ -z "$1" ]; then 
+		printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+	else
+		echo "$1"
+		echo
+	fi
 }
 
 function view(){
