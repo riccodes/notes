@@ -1,3 +1,4 @@
+source ts
 repo=/home/ric/notes-repo/
 
 function help_menu() {
@@ -39,7 +40,12 @@ function view(){
 }
 
 function new() {
-    echo -e "$2" >> "$repo""$1".note
+	if [[ "$1" == "thoughts" ]]; then
+		echo -e "$(ts) $2" >> "$repo""$1".note
+	else
+		echo -e "$2" >> "$repo""$1".note
+	fi
+    
     view $1
     commit
     update_refs
