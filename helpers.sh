@@ -1,23 +1,25 @@
+repo=/home/ric/notes-repo/
+
 function help_menu() {
   echo "Notes Help Menu"
   echo
   echo "Options:"
-  echo "-c                      		collects all .note files to /home/ric/notes-repo. commits"
-  echo "-d [line-number/range] [name]		deletes a line or range of lines \"2,5\". commits"
-  echo "-e [name]               		edits a note"
-  echo "-f [query]              		finds notes containing [query]"
-  echo "-h                      		shows this help menu"
-  echo "-l                      		lists all notes in long format"
-  echo "-m [current] [new]      		renames [current] to [new]. commits"
-  echo "-n [name] [\"content\"]   		creates/updates a note. commits"
-  echo "-s [filter]             		search for notes that match *[filter]*.note"
-  echo "-v [name]               		prints a note to the terminal"
-  echo "-x [name]               		deletes a note. commits"
+  echo "-c, collect                      			collects all .note files to /home/ric/notes-repo. commits"
+  echo "-d, delete line [line-number/range] [name]		deletes a line or range of lines \"2,5\". commits"
+  echo "-e, edit [name]               				edits a note"
+  echo "-f, find [query]              				finds notes containing [query]"
+  echo "-h, help		                      		shows this help menu"
+  echo "-l, lists			                      	lists all notes in long format"
+  echo "-m, mv copy [current] [new]      			renames [current] to [new]. commits"
+  echo "-n, new [name] [\"content\"]   				creates/updates a note. commits"
+  echo "-s, search [filter]             			search for notes that match *[filter]*.note"
+  echo "-v, view [name]               				prints a note to the terminal"
+  echo "-x, delete [name]               			deletes a note. commits"
   echo
   echo "Arguments:"
-  echo "sync                    		sync with git server. commits"
-  echo "status                  		show git repo status"
-  echo "No args                 		short list all notes"
+  echo "sync                    				sync with git server. commits. pulls. pushes"
+  echo "status                  				show git repo status. fetches"
+  echo "No args                 				short list all notes"
 }
 
 function print_separator() {
@@ -31,12 +33,16 @@ function print_separator() {
 
 function view(){
 	print_separator "$1"
-    cat /home/ric/notes-repo/"$1".note
+    cat "$repo""$1".note
     print_separator
 }
 
-function collect() {q
-  notes=$(find /home/ric/ -name '*.note' -not -path "/home/ric/notes-repo/*")
+function copy(){
+	cp /home/ric/notes
+}
+
+function collect() {
+  notes=$(find /home/ric/ -name '*.note' -not -path "$repo""*")
   lines=$(echo "$notes" | wc -l)    # counts number of lines
   chars=$(echo -n "$notes" | wc -c) # counts number of chars
 
@@ -46,7 +52,7 @@ function collect() {q
   if ((chars > 0)); then
     printf "Found $lines note(s):%s\n$notes%s\n"
     echo
-    echo "moving notes to /home/ric/notes-repo"
+    echo "moving notes to $repo"
 
     while IFS= read -r line; do
       mv "$line" ~/notes-repo/
@@ -56,27 +62,29 @@ function collect() {q
   fi
 }
 
+#todo extract 'git --git-dir="$repo".git --work-tree="$repo"' to a variable
+
 function commit(){
-  git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ add . >> /dev/null
-  git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ commit -m "$(date +%y-%m-%d_%T)"
+  git --git-dir="$repo".git --work-tree="$repo" add . >> /dev/null
+  git --git-dir="$repo".git --work-tree="$repo" commit -m "$(date +%y-%m-%d_%T)"
 }
 
 function sync() {
     echo ">>> checking for server changes..."
-    git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ pull
+    git --git-dir="$repo".git --work-tree="$repo" pull
 
     echo ">>> committing all files..."
     commit
 
     echo ">>> merging with server..."
-    git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ push
+    git --git-dir="$repo".git --work-tree="$repo" push
 
     echo "done!"
 }
 
 function status() {
-     git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ fetch
-     git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ status
+     git --git-dir="$repo".git --work-tree="$repo" fetch
+     git --git-dir="$repo".git --work-tree="$repo" status
 }
 
 function update_refs() {
@@ -84,7 +92,7 @@ function update_refs() {
 }
 
 function new() {
-    echo -e "$2" >> /home/ric/notes-repo/"$1".note
+    echo -e "$2" >> "$repo""$1".note
     view $1
     commit
     update_refs
