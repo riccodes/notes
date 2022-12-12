@@ -26,7 +26,7 @@ function print_separator() {
 }
 
 function view(){
-	  print_separator "$1"
+	print_separator "$1"
     cat /home/ric/notes-repo/"$1".note
     print_separator
 }
