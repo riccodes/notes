@@ -71,6 +71,7 @@ function sync() {
 }
 
 function status() {
+     git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ fetch
      git --git-dir=/home/ric/notes-repo/.git --work-tree=/home/ric/notes-repo/ status
 }
 
