@@ -1,20 +1,20 @@
 source ts
-repo=/home/ric/notes-repo/
+repo=~/notes-repo/
 
 function help_menu() {
   echo "Notes Help Menu"
   echo
   echo "Options:"
-  echo "-c, collect                      			collects all .note files to /home/ric/notes-repo. commits"
+  echo "-c, collect                      			collects all .note files to ~/notes-repo. commits"
   echo "-d, delete line [line-number/range] [name]		deletes a line or range of lines \"2,5\". commits"
   echo "-e, edit [name]               				edits a note"
   echo "-f, find [query]              				finds notes containing [query]"
   echo "-h, help		                      		shows this help menu"
   echo "-l, lists			                      	lists all notes in long format"
-  echo "-m, mv copy [current] [new]      			renames [current] to [new]. commits"
+  echo "-m, mv rename [current] [new]      			renames [current] to [new]. commits"
   echo "-n, new [name] [\"content\"]   				creates/updates a note. commits"
   echo "-s, search [filter]             			search for notes that match *[filter]*.note"
-  echo "-v, v1, view [name]               			prints a note to the terminal. -v1 will print line numbers"
+  echo "-v/v1, view [name]               			prints a note to the terminal. -v1 will print line numbers"
   echo "-x, delete [name]               			deletes a note. commits"
   echo
   echo "Arguments:"
@@ -69,7 +69,7 @@ function copy(){
 }
 
 function collect() {
-  notes=$(find /home/ric/ -name '*.note' -not -path "$repo""*")
+  notes=$(find ~ -name '*.note' -not -path "$repo""*")
   lines=$(echo "$notes" | wc -l)    # counts number of lines
   chars=$(echo -n "$notes" | wc -c) # counts number of chars
 
@@ -89,7 +89,9 @@ function collect() {
   fi
 }
 
-#todo extract 'git --git-dir="$repo".git --work-tree="$repo"' to a variable
+function git_it(){
+	git --git-dir="$repo".git --work-tree="$repo" $1
+}
 
 function commit(){
   git --git-dir="$repo".git --work-tree="$repo" add . >> /dev/null
@@ -98,20 +100,20 @@ function commit(){
 
 function sync() {
     echo ">>> checking for server changes..."
-    git --git-dir="$repo".git --work-tree="$repo" pull
+    git_it "pull"
 
     echo ">>> committing all files..."
     commit
 
     echo ">>> merging with server..."
-    git --git-dir="$repo".git --work-tree="$repo" push
+    git_it "push"
 
     echo "done!"
 }
 
 function status() {
-     git --git-dir="$repo".git --work-tree="$repo" fetch
-     git --git-dir="$repo".git --work-tree="$repo" status
+     git_it "fetch"
+     git_it "status"
 }
 
 function update_refs() {
