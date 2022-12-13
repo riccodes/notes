@@ -41,6 +41,7 @@ function view(){
 	else
 		cat "$repo""$1".note
 	fi
+	
 	echo
     print_separator
 }
@@ -117,5 +118,5 @@ function status() {
 }
 
 function update_refs() {
-  exec zsh
+	exec zsh
 }
