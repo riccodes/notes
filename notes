@@ -76,8 +76,12 @@ if [ $OPTIND -eq 1 ]
       status
       exit ;;
 
-    *)
+    "")
       ls "$repo";
+      exit ;;
+
+    *)
+      new "$1" "$2"
       exit ;;
   esac
 fi

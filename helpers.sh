@@ -21,6 +21,7 @@ function help_menu() {
   echo "copy [name] [new name]                  		copies a note. appends -copy if no [new name] is passed"
   echo "sync                    				sync with git server. commits. pulls. pushes"
   echo "status                  				show git repo status. fetches"
+  echo "[name] [content]         				same as -n. commits"
   echo "No args                 				short list all notes"
 }
 
