@@ -1,8 +1,12 @@
 #!/bin/bash
 
+args=("copy" "save" "sync")
+
 notes=( ~/notes-repo/* ) # find all notes in directory
 notes=( "${notes[@]##*/}" ) # remove /home/ric/notes-repo
 notes=( "${notes[@]%.note}" ) # remove .note
-note_list=$( IFS=$' '; echo "${notes[*]}" ) # convert to string
 
-complete -W "$note_list" notes # add note list to complete
+raw=("${notes[@]}" "${args[@]}") # append commands
+note_list=$( IFS=$' '; echo "${raw[*]}" ) # convert to string
+
+complete -W "$note_list" notes # add note list to auto complete
