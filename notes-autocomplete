@@ -1,6 +1,6 @@
 #!/bin/bash
 
-args=("copy" "save" "sync")
+args=("copy" "status" "sync")
 
 notes=( ~/notes-repo/* ) # find all notes in directory
 notes=( "${notes[@]##*/}" ) # remove /home/ric/notes-repo
