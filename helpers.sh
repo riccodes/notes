@@ -48,15 +48,21 @@ function view(){
 }
 
 function new() {
+
+  if [[ -z $2 ]]; then
+    view $1
+    exit
+  fi
+
 	if [[ "$1" == "thoughts" ]]; then
 		echo -e "$(ts) $2" >> "$repo""$1".note
 	else
 		echo -e "$2" >> "$repo""$1".note
 	fi
     
-    view $1
-    commit
-    update_refs
+  view $1
+  commit
+  update_refs
 }
 
 function copy(){
