@@ -28,7 +28,9 @@ while getopts ":chlx:d:e:f:i:m:n:v:s:" option; do
     exit ;;
 
   i)
-    sed "$2"' i '"$3" "$repo""$4".note
+    sed -i "$2"' i '"$3" "$repo""$4".note
+    view $4 "-v1"
+    commit
     exit ;;
 
   l)
