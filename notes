@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 source helpers.sh
 
-while getopts ":chlx:d:e:f:m:n:v:s:" option; do
+while getopts ":chlx:d:e:f:i:m:n:v:s:" option; do
   case $option in
   c)
     collect
@@ -25,6 +25,10 @@ while getopts ":chlx:d:e:f:m:n:v:s:" option; do
 
   h)
     help_menu
+    exit ;;
+
+  i)
+    sed "$2"' i '"$3" "$repo""$4".note
     exit ;;
 
   l)
