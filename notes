@@ -16,7 +16,7 @@ while getopts ":chlx:d:e:f:i:m:n:v:s:" option; do
     exit ;;
 
   e)
-    gamma-editor "$repo""$2".note
+    code "$repo""$2".note
     exit ;;
 
   f)
