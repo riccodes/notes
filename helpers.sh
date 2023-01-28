@@ -1,5 +1,6 @@
 source ts
 repo=~/notes-repo/
+custom_file=~/.oh-my-zsh/custom/custom.zsh
 
 function help_menu() {
   echo "Notes Help Menu"
@@ -24,6 +25,7 @@ function help_menu() {
   echo "status                  show git repo status. fetches"
   echo "[name] [content]        same as -n. commits"
   echo "No args                 short list all notes"
+  echo "init                    add to $PATH and source autocomplete"
 }
 
 function print_separator() {
@@ -36,8 +38,10 @@ function print_separator() {
 }
 
 function init(){
-	echo "export PATH=$PATH:/home/ric/codebase/scripts/notes" >> /home/ric/.oh-my-zsh/custom/custom.zsh
-	echo "source /home/ric/codebase/scripts/notes/notes-autocomplete" >> /home/ric/.oh-my-zsh/custom/custom.zsh
+  echo "" >> "$custom_file"
+	echo "## NOTES APP" >> "$custom_file"
+	echo 'export PATH="$PATH:/home/ric/codebase/scripts/notes"' >> "$custom_file"
+	echo "source ~/codebase/scripts/notes/notes-autocomplete" >> "$custom_file"
 }
 
 function view(){
