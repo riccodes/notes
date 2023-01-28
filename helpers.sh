@@ -35,6 +35,11 @@ function print_separator() {
 	fi
 }
 
+function init(){
+	echo "export PATH=$PATH:/home/ric/codebase/scripts/notes" >> /home/ric/.oh-my-zsh/custom/custom.zsh
+	echo "source /home/ric/codebase/scripts/notes/notes-autocomplete" >> /home/ric/.oh-my-zsh/custom/custom.zsh
+}
+
 function view(){
 	print_separator "$1"
 	
