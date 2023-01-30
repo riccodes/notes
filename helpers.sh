@@ -38,6 +38,8 @@ function print_separator() {
 }
 
 function init(){
+  echo "installing bat"
+  sudo pacman -S bat
   echo "" >> "$custom_file"
 	echo "## NOTES APP" >> "$custom_file"
 	echo 'export PATH="$PATH:/home/ric/codebase/scripts/notes"' >> "$custom_file"
@@ -47,20 +49,16 @@ function init(){
 function view(){
 	print_separator "$1"
 	
-	if [[ "$2" == "NOLINES" ]]; then
-		cat "$repo""$1".note
-	else
-		cat -n "$repo""$1".note
-	fi
+	bat "$repo""$1".note
 	
 	echo
-    print_separator
+  print_separator
 }
 
 function new() {
 
   if [[ -z $2 ]]; then
-    view $1 "NOLINES"
+    view $1
     exit
   fi
 
