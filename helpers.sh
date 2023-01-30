@@ -47,12 +47,7 @@ function init(){
 }
 
 function view(){
-	print_separator "$1"
-	
 	bat "$repo""$1".note
-	
-	echo
-  print_separator
 }
 
 function new() {
