@@ -47,7 +47,7 @@ function init(){
 }
 
 function view(){
-	bat "$repo""$1".note
+	bat -n "$repo""$1".note
 }
 
 function new() {
