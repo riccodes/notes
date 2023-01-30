@@ -16,7 +16,7 @@ function help_menu() {
   echo "-m, mv rename [current] [new]               renames [current] to [new]. commits"
   echo "-n, new [name] [\"content\"]                  creates/updates a note. commits"
   echo "-s, search [filter]                         search for notes that match *[filter]*.note"
-  echo "-v/v1, view [name]                          prints a note to the terminal. -v1 will print line numbers"
+  echo "-v, view [name]                             prints a note to the terminal with line numbers"
   echo "-x, delete [name]                           deletes a note. commits"
   echo
   echo "Arguments:"
@@ -47,10 +47,10 @@ function init(){
 function view(){
 	print_separator "$1"
 	
-	if [[ "$2" == "-v1" ]]; then
-		cat -n "$repo""$1".note
-	else
+	if [[ "$2" == "NOLINES" ]]; then
 		cat "$repo""$1".note
+	else
+		cat -n "$repo""$1".note
 	fi
 	
 	echo
@@ -60,7 +60,7 @@ function view(){
 function new() {
 
   if [[ -z $2 ]]; then
-    view $1
+    view $1 "NOLINES"
     exit
   fi
 

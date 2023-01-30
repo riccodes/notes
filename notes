@@ -83,8 +83,8 @@ if [ $OPTIND -eq 1 ]
       exit ;;
 
     "init")
-          init
-          exit ;;
+      init
+      exit ;;
 
     "")
       ls "$repo";
