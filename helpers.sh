@@ -107,9 +107,9 @@ function git_it(){
 
 function commit(){
   echo "syncing notes..."
-  git --git-dir="$repo".git --work-tree="$repo" add . >> /dev/null
-  git --git-dir="$repo".git --work-tree="$repo" commit -m "$(date +%y-%m-%d_%T)" >> /dev/null
-  echo git_it "push" >> /dev/null
+  git --git-dir="$repo".git --work-tree="$repo" add . > /dev/null 2>&1
+  git --git-dir="$repo".git --work-tree="$repo" commit -m "$(date +%y-%m-%d_%T)" > /dev/null 2>&1
+  git_it "push" > /dev/null 2>&1
   echo "done!"
 }
 
