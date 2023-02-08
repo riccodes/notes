@@ -48,6 +48,7 @@ function init(){
 
 function view(){
 	bat -n "$repo""$1".note
+	echo
 }
 
 function new() {
@@ -105,21 +106,18 @@ function git_it(){
 }
 
 function commit(){
+  echo "syncing notes..."
   git --git-dir="$repo".git --work-tree="$repo" add . >> /dev/null
-  git --git-dir="$repo".git --work-tree="$repo" commit -m "$(date +%y-%m-%d_%T)"
+  git --git-dir="$repo".git --work-tree="$repo" commit -m "$(date +%y-%m-%d_%T)" >> /dev/null
+  echo git_it "push" >> /dev/null
+  echo "done!"
 }
 
 function sync() {
-    echo ">>> checking for server changes..."
+    git --git-dir="$repo".git --work-tree="$repo" add . #add
+    git --git-dir="$repo".git --work-tree="$repo" commit -m "$(date +%y-%m-%d_%T)" #commit
     git_it "pull"
-
-    echo ">>> committing all files..."
-    commit
-
-    echo ">>> merging with server..."
     git_it "push"
-
-    echo "done!"
 }
 
 function status() {
