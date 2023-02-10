@@ -102,7 +102,7 @@ function collect() {
 }
 
 function git_it(){
-	git --git-dir="$repo".git --work-tree="$repo" $1
+	git --git-dir="$repo".git --work-tree="$repo" "$1"
 }
 
 function commit(){

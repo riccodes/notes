@@ -34,7 +34,7 @@ while getopts ":chlx:d:e:f:i:m:n:v:s:" option; do
     exit ;;
 
   l)
-    ls -goh "$repo"
+    exa -lh --no-permissions --no-user --icons --git "$repo"
     exit ;;
 
   n)
@@ -87,7 +87,7 @@ if [ $OPTIND -eq 1 ]
       exit ;;
 
     "")
-      ls "$repo";
+      exa --icons "$repo";
       exit ;;
 
     *)
