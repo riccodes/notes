@@ -38,8 +38,14 @@ function print_separator() {
 }
 
 function init(){
+  # install bat
   echo "installing bat"
   sudo pacman -S bat
+  
+  # install exa
+  echo "installing exa"
+  sudo pacman -S exa
+
   echo "" >> "$custom_file"
 	echo "## NOTES APP" >> "$custom_file"
 	echo 'export PATH="$PATH:/home/ric/codebase/scripts/notes"' >> "$custom_file"
