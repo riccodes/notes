@@ -14,7 +14,6 @@ function help_menu() {
   echo "-i, ins [line-number] [\"content\"] [name]    inserts a line. commits"
   echo "-l, lists                                   lists all notes in long format"
   echo "-m, mv rename [current] [new]               renames [current] to [new]. commits"
-  echo "-n, new [name] [\"content\"]                  creates/updates a note. commits"
   echo "-s, search [filter]                         search for notes that match *[filter]*.note"
   echo "-v, view [name]                             prints a note to the terminal with line numbers"
   echo "-x, delete [name]                           deletes a note. commits"
@@ -25,7 +24,7 @@ function help_menu() {
   echo "status                  show git repo status. fetches"
   echo "[name] [content]        same as -n. commits"
   echo "No args                 short list all notes"
-  echo "init                    add to $PATH and source autocomplete"
+  echo "init                    add to PATH and source autocomplete"
 }
 
 function print_separator() {

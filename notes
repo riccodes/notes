@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 source helpers.sh
 
-while getopts ":chlx:d:e:f:i:m:n:v:s:" option; do
+while getopts ":chlx:d:e:f:i:m:v:s:" option; do
   case $option in
   c)
     collect
@@ -29,16 +29,12 @@ while getopts ":chlx:d:e:f:i:m:n:v:s:" option; do
 
   i)
     sed -i "$2"' i '"$3" "$repo""$4".note
-    view $4 "-v1"
+    view $4
     commit
     exit ;;
 
   l)
     exa -lh --no-permissions --no-user --icons --git "$repo"
-    exit ;;
-
-  n)
-    new "$2" "$3"
     exit ;;
 
   m)
