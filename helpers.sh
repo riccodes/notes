@@ -65,6 +65,8 @@ function new() {
 
 	if [[ "$1" == "thoughts" ]]; then
 		echo -e "$(ts) $2" >> "$repo""$1".note
+  elif [[ "$1" == *"-todo" ]]; then
+    echo -e "[] $2" >> "$repo""$1".note
 	else
 		echo -e "$2" >> "$repo""$1".note
 	fi
