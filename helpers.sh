@@ -1,3 +1,4 @@
+
 source ts
 repo=~/notes-repo/
 custom_file=~/.oh-my-zsh/custom/custom.zsh
@@ -44,6 +45,12 @@ function init(){
   # install exa
   echo "installing exa"
   sudo pacman -S exa
+
+  echo "installing micro"
+    sudo pacman -S micro
+
+  echo "installing zoxide"
+    yay zoxide
 
   echo "" >> "$custom_file"
 	echo "## NOTES APP" >> "$custom_file"

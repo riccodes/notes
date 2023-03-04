@@ -16,7 +16,7 @@ while getopts ":chlx:d:e:f:i:m:v:s:" option; do
     exit ;;
 
   e)
-    code "$repo""$2".note
+    micro "$repo""$2".note
     exit ;;
 
   f)
