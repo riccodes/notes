@@ -54,7 +54,7 @@ function init(){
 
   echo "" >> "$custom_file"
 	echo "## NOTES APP" >> "$custom_file"
-	echo 'export PATH="$PATH:/home/ric/codebase/scripts/notes"' >> "$custom_file"
+	echo 'export PATH="$PATH:$HOME/codebase/scripts/notes"' >> "$custom_file"
 	echo "source ~/codebase/scripts/notes/notes-autocomplete" >> "$custom_file"
 }
 
