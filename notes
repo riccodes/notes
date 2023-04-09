@@ -87,7 +87,7 @@ if [ $OPTIND -eq 1 ]
       exit ;;
 
     *)
-      new "$1" "$2"
+      new "$1" "$2" "$3"
       exit ;;
   esac
 fi

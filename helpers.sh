@@ -63,6 +63,19 @@ function view(){
 	echo
 }
 
+function addToCommands(){
+
+  note="$repo""commands.note"
+  result=$(grep -Fxin "******""$1" $note)
+  ln=$(("${result%%:*}")) #substring line number
+
+  if [ "$ln" -gt 0 ]; then
+    ((ln=ln+1))   #increment line number
+
+    sed -i "${ln}i $2" $note #insert new line
+  fi
+}
+
 function new() {
 
   if [[ -z $2 ]]; then
@@ -74,6 +87,8 @@ function new() {
 		echo -e "$(ts) $2" >> "$repo""$1".note
   elif [[ "$1" == *"-todo" ]]; then
     echo -e "[] $2" >> "$repo""$1".note
+  elif [[ "$1" == "commands" ]]; then
+      addToCommands "$2" "$3"
 	else
 		echo -e "$2" >> "$repo""$1".note
 	fi
