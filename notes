@@ -17,6 +17,7 @@ while getopts ":chlx:d:e:f:i:m:v:s:" option; do
 
   e)
     micro "$repo""$2".note
+    commit
     exit ;;
 
   f)
@@ -68,6 +69,10 @@ if [ $OPTIND -eq 1 ]
   case "$1" in
   	"copy")
       copy $2 $3
+      exit ;;
+
+    "clear")
+      clear $2
       exit ;;
 
     "sync")

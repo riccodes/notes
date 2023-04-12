@@ -58,6 +58,16 @@ function init(){
 	echo "source ~/codebase/scripts/notes/notes-autocomplete" >> "$custom_file"
 }
 
+function clear() {
+    if [[ -n $1 ]]; then
+      rm "$repo""$1".note
+      touch "$repo""$1".note
+      exit
+    fi
+
+    echo "note name is required"
+}
+
 function view(){
 	bat -n "$repo""$1".note
 	echo
