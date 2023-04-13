@@ -62,6 +62,8 @@ function clear() {
     if [[ -n $1 ]]; then
       rm "$repo""$1".note
       touch "$repo""$1".note
+
+      commit
       exit
     fi
 
