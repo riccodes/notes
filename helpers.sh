@@ -109,7 +109,9 @@ function new() {
     
   view $1
   commit
-  update_refs
+  #update_refs todo-ricz commenting this out because it causes issues when launching from tint2
+
+  return 0
 }
 
 function copy(){
@@ -169,5 +171,6 @@ function status() {
 }
 
 function update_refs() {
-	exec zsh
+	exec zsh #todo-ricz this causes issues. Find a better way to update autocomplete for zsh
+	exit 0
 }
