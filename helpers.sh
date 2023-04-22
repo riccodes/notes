@@ -1,5 +1,6 @@
+#!/bin/bash
 
-source ts
+source $HOME/codebase/scripts/notes/ts
 repo=~/notes-repo/
 custom_file=~/.oh-my-zsh/custom/custom.zsh
 
