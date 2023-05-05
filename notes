@@ -25,7 +25,8 @@ while getopts ":chlx:d:e:f:g:i:m:v:s:" option; do
     exit ;;
 
   g)
-      sed -n "/------$2/,/------/{//b;p}" "$repo""$3".note
+      header=$(echo "$2" | awk '{print toupper($0)}') #convert to upper case
+      sed -n "/------$header/,/------/{//b;p}" "$repo""$3".note
       exit ;;
 
   h)
