@@ -12,7 +12,7 @@ function help_menu() {
   echo "-d, delete line [line-number/range] [name]  deletes a line or range of lines \"2,5\". commits"
   echo "-e, edit [name]                             edits a note"
   echo "-f, find [query]                            finds notes containing [query]"
-  echo "-g, grab [TITLE] [name]                     grabs a section by title"
+  echo "-g, grab [title] [name]                     grabs a section by title"
   echo "-h, help                                    shows this help menu"
   echo "-i, ins [line-number] [\"content\"] [name]    inserts a line. commits"
   echo "-l, lists                                   lists all notes in long format"
