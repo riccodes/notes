@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 source $HOME/codebase/scripts/notes/helpers.sh
 
-while getopts ":chlx:d:e:f:i:m:v:s:" option; do
+while getopts ":chlx:d:e:f:g:i:m:v:s:" option; do
   case $option in
   c)
     collect
@@ -23,6 +23,10 @@ while getopts ":chlx:d:e:f:i:m:v:s:" option; do
   f)
     find "$repo" -not -path '*/.*' -type f -print0 | xargs -0 grep -i "$2"
     exit ;;
+
+  g)
+      sed -n "/------$2/,/------/{//b;p}" "$repo""$3".note
+      exit ;;
 
   h)
     help_menu
